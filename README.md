@@ -5,3 +5,7 @@ This extension enhances Apache Guacamole’s OIDC authentication by translating 
 Guacamole normally receives only group GUIDs from Entra ID tokens, which makes group-based authorization hard to manage. This extension intercepts the authenticated user after login, resolves group GUIDs via Microsoft Graph, and exposes the corresponding group display names to Guacamole.
 
 As a result, administrators can use Azure group names directly in Guacamole for permissions and access control instead of unreadable GUIDs.
+
+---
+
+Please note this repo is still under development. I, myself do not have a lot of experience with java. Feel free to contribute to this repo.
