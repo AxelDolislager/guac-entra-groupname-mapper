@@ -1,0 +1,33 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.lexaphix.guacamole</groupId>
+  <artifactId>guac-entra-groupmapper</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+
+  <dependencies>
+
+    <!-- Guacamole Extension API -->
+    <dependency>
+      <groupId>org.apache.guacamole</groupId>
+      <artifactId>guacamole-ext</artifactId>
+      <version>1.6.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Graph API HTTP client -->
+    <dependency>
+      <groupId>com.microsoft.graph</groupId>
+      <artifactId>microsoft-graph</artifactId>
+      <version>5.67.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.azure</groupId>
+      <artifactId>azure-identity</artifactId>
+      <version>1.10.3</version>
+    </dependency>
+
+  </dependencies>
+</project>

@@ -1,0 +1,6 @@
+{
+  "guacamoleVersion" : "1.6.0",
+  "name" : "Azure Entra Group Name Mapper",
+  "namespace" : "com.lexaphix.guacamole.entra",
+  "selfHosted": true
+}
