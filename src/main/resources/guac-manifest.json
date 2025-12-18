@@ -1,6 +1,6 @@
 {
   "guacamoleVersion" : "1.6.0",
-  "name" : "Azure Entra Group Name Mapper",
-  "namespace" : "com.lexaphix.guacamole.entra",
-  "selfHosted": true
+  "name": "Entra Group Mapper Extension",
+  "namespace": "com.lexaphix.guacamole.entra",
+  "auth-provider": "EntraGroupMapperExtension"
 }

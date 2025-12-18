@@ -1,23 +1,47 @@
+package com.lexaphix.guacamole.entra;
+
+import org.apache.guacamole.net.auth.*;
+import org.apache.guacamole.GuacamoleException;
+
 public class WrappedAuthenticationProvider implements AuthenticationProvider {
 
-    private final AuthenticationProvider delegate;
-    private final EntraGroupMappingService mappingService = new EntraGroupMappingService();
+    private final EntraGroupMappingService groupService;
 
-    public WrappedAuthenticationProvider(AuthenticationProvider delegate) {
-        this.delegate = delegate;
+    public WrappedAuthenticationProvider(String tenantId, String clientId, String clientSecret) throws GuacamoleException {
+        try {
+            groupService = new EntraGroupMappingService(tenantId, clientId, clientSecret);
+        } catch (Exception e) {
+            throw new GuacamoleException("Failed to initialize EntraGroupMappingService", e);
+        }
     }
 
     @Override
-    public AuthenticatedUser authenticateUser(Credentials credentials)
-            throws GuacamoleException {
+    public AuthenticatedUser updateAuthenticatedUser(AuthenticatedUser user, Credentials credentials) throws GuacamoleException {
+        return new WrappedAuthenticatedUser(user, groupService, this);
+    }
 
-        AuthenticatedUser user = delegate.authenticateUser(credentials);
+    @Override
+    public UserContext updateUserContext(UserContext context, AuthenticatedUser user, Credentials credentials) throws GuacamoleException {
+        return context;
+    }
 
-        if (user == null)
-            return null;
+    @Override
+    public void shutdown() {
+        // cleanup indien nodig
+    }
 
-        Set<String> mapped = mappingService.mapGuidsToNames(user.getEffectiveGroups());
+    @Override
+    public String getIdentifier() {
+        return "entra-group-mapper";
+    }
 
-        return new WrappedAuthenticatedUser(user, mapped);
+    @Override
+    public void decorate(UserContext existingContext, UserContext newContext, AuthenticatedUser user, Credentials credentials) throws GuacamoleException {
+        // geen logica voor nu
+    }
+
+    @Override
+    public void redecorate(UserContext existingContext, UserContext newContext, AuthenticatedUser user, Credentials credentials) throws GuacamoleException {
+        // geen logica voor nu
     }
 }

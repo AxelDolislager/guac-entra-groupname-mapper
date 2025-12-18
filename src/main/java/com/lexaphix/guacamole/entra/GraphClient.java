@@ -1,23 +1,24 @@
+package com.lexaphix.guacamole.entra;
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
 public class GraphClient {
 
-    private final GraphServiceClient graphClient;
+    private final String tenantId;
+    private final String clientId;
+    private final String clientSecret;
 
-    public GraphClient() {
-        TokenCredential credential = new ClientSecretCredentialBuilder()
-                .clientId(System.getenv("ENTRA_CLIENT_ID"))
-                .clientSecret(System.getenv("ENTRA_CLIENT_SECRET"))
-                .tenantId(System.getenv("ENTRA_TENANT_ID"))
-                .build();
-
-        graphClient = new GraphServiceClient(credential, List.of("https://graph.microsoft.com/.default"));
+    public GraphClient(String tenantId, String clientId, String clientSecret) {
+        this.tenantId = tenantId;
+        this.clientId = clientId;
+        this.clientSecret = clientSecret;
     }
 
-    public String getGroupName(String guid) {
-        try {
-            var group = graphClient.groups(guid).buildRequest().get();
-            return group.displayName;
-        } catch (Exception e) {
-            return null;
-        }
+    public String getGroupName(String groupId) throws IOException {
+        // Dummy implementatie; hier zou je Microsoft Graph API call doen
+        // Gebruik tenantId/clientId/clientSecret voor authenticatie
+        return "Group-" + groupId;
     }
 }
