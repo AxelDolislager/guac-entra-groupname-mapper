@@ -1,6 +1,6 @@
 {
   "guacamoleVersion" : "1.6.0",
   "name": "Entra Group Mapper Extension",
-  "namespace": "com.lexaphix.guacamole.entra",
+  "namespace": "org.apache.guacamole.auth.entragroups",
   "auth-provider": "EntraGroupMapperExtension"
 }
